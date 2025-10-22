@@ -1,0 +1,24 @@
+cmake_minimum_required(VERSION 3.10)
+
+project(LinalgComparison)
+
+set(CMAKE_CXX_STANDARD 23)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG -march=native -mtune=native -ffast-math -funroll-loops")
+
+# single-threaded execution
+add_definitions(-DEIGEN_DONT_PARALLELIZE)
+
+find_package(Eigen3 CONFIG REQUIRED)
+
+add_executable(LinalgComparison benchmark.cpp)
+
+target_link_libraries(LinalgComparison PRIVATE Eigen3::Eigen)
+
+# additional Eigen optimizations
+target_compile_definitions(LinalgComparison PRIVATE 
+    EIGEN_NO_DEBUG
+    EIGEN_FAST_MATH
+    EIGEN_UNROLLING_LIMIT=100
+)

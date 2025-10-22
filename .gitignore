@@ -301,7 +301,7 @@ Data/
 build/
 cmake-build-debug/
 
-*.txt
+benchmark_*
 
 .idea/
 
