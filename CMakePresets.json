@@ -7,11 +7,11 @@
     },
     "configurePresets": [
         {
-            "name": "default",
+            "name": "linux-gcc",
             "hidden": false,
             "generator": "Ninja",
-            "description": "Default configuration using Ninja generator",
-            "binaryDir": "${sourceDir}/build",
+            "description": "Linux-GCC configuration using Ninja generator",
+            "binaryDir": "${sourceDir}/build-gcc",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
                 "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
@@ -20,16 +20,50 @@
             }
         },
         {
-            "name": "debug",
+            "name": "linux-clang",
             "hidden": false,
             "generator": "Ninja",
-            "description": "Debug configuration",
-            "binaryDir": "${sourceDir}/build-debug",
+            "description": "Linux-Clang configuration using Ninja generator",
+            "binaryDir": "${sourceDir}/build-clang",
             "cacheVariables": {
-                "CMAKE_BUILD_TYPE": "Debug",
-                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+                "CMAKE_BUILD_TYPE": "Release",
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_C_COMPILER": "clang",
+                "CMAKE_CXX_COMPILER": "clang++"
             }
-            
+        },
+        {
+            "name": "default",
+            "inherits": ["linux-gcc"]
+        },
+        {
+            "name": "debug",
+            "inherits": ["linux-gcc"],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "windows-msvc",
+            "hidden": false,
+            "generator": "Visual Studio 17 2022",
+            "description": "Windows configuration using Visual Studio 2022 generator",
+            "binaryDir": "${sourceDir}/build-msvc",
+            "cacheVariables": {
+                "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "windows",
+            "inherits": ["windows-msvc"]
+        },
+        {
+            "name": "debug-windows",
+            "inherits": ["windows-msvc"],
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
         }
     ],
     "buildPresets": [
@@ -40,6 +74,10 @@
         {
             "name": "debug",
             "configurePreset": "debug"
+        },
+        {
+            "name": "windows",
+            "configurePreset": "windows"
         }
     ],
     "testPresets": [

@@ -22,3 +22,10 @@ target_compile_definitions(LinalgComparison PRIVATE
     EIGEN_FAST_MATH
     EIGEN_UNROLLING_LIMIT=100
 )
+
+# MSVC: heavy template instantiation (Eigen) can produce object files with
+# many COMDAT sections and trigger "number of sections exceeded" (C1128).
+# Add /bigobj to allow more sections in object files for MSVC builds.
+if (MSVC)
+    target_compile_options(LinalgComparison PRIVATE /bigobj)
+endif()

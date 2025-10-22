@@ -298,7 +298,7 @@ Data/
 /dataSources.local.xml
 
 # Builds
-build/
+build*/
 cmake-build-debug/
 
 benchmark_*
