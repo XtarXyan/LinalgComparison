@@ -34,11 +34,9 @@ def linear_solver(A, b, C, d):
 
 def least_squares_solver(A, b, C, d):
     """
-    Solve the augmented system [C; A] x = [d; b] in least squares sense.
+    Solve the overdetermined system Cx=d in least squares sense.
     """
-    CA = np.vstack([C, A])  # Stack C and A vertically
-    db = np.concatenate([d, b])  # Create vector of size 2 * n
-    return np.linalg.lstsq(CA, db, rcond=None)[0]
+    return np.linalg.lstsq(C, d, rcond=None)[0]
 
 def pseudo_inverse_solver(A, b, C, d):
     """
@@ -62,9 +60,9 @@ def singular_value_solver(A, b, C, d):
 
 def inner_product_solver(A, b, C, d):
     """
-    Compute the inner product b^T A d.
+    Compute the inner product d^T C b.
     """
-    return b.T @ A @ d
+    return float(d.T @ C @ b)
 
 def outer_product_solver(A, b, C, d):
     """
@@ -110,4 +108,3 @@ if __name__ == "__main__":
         # Write results to a file
         with open('benchmark_results_python.txt', 'a') as f:
             f.write(f"Solver: {solver.__name__}, Average Time over {benchmark_runs} runs: {avg_time:.6f} seconds\n")
-

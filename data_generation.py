@@ -9,7 +9,7 @@ m = n * 2
 A = np.random.uniform(-1, 1, (n, n))
 b = np.random.uniform(-1, 1, n)
 C = np.random.uniform(-1, 1, (m, n))
-d = np.random.uniform(-1, 1, n)
+d = np.random.uniform(-1, 1, m)
 
 # Check if Data directory exists, if not create it
 if not os.path.exists('Data'):

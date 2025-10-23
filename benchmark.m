@@ -74,10 +74,8 @@ function x = linear_solver(A, b, C, d)
 end
 
 function x = least_squares_solver(A, b, C, d)
-    % Solve the augmented system [C; A] x = [d; b] in least squares sense.
-    CD = [C; A];
-    bd = [b; d];
-    x = CD \ bd; 
+    % Solve the augmented system Cx = d in least squares sense.
+    x = C \ d; 
 end
 
 function x = pseudo_inverse_solver(A, b, C, d)
@@ -100,12 +98,12 @@ function x = singular_value_solver(A, b, C, d)
 end
 
 function result = inner_product_solver(A, b, C, d)
-    % Compute the inner product b^T A d
-    result = b' * A * d;
+    % Compute the inner product d^T C b
+    result = d' * C * b;
 end
 
 function result = outer_product_solver(A, b, C, d)
     % Compute the outer product of b and d, flattened to a 1D array
-    outer_prod = A * (b * d');
+    outer_prod = b * d';
     result = outer_prod(:);  % Flatten to column vector
 end
