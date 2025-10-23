@@ -47,10 +47,10 @@ python benchmark.py
 To benchmark C++ run
 ```Powershell
 cmake --preset windows
-./build-msvc/LinalgComparison.exe
+.\build-msvc\LinalgComparison.exe
 ```
 
-###Linux:
+### Linux:
 Open bash in the root directory of the project.
 
 Generate the data by running:
