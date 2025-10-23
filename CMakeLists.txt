@@ -17,7 +17,7 @@ add_executable(LinalgComparison benchmark.cpp)
 target_link_libraries(LinalgComparison PRIVATE Eigen3::Eigen)
 
 # Define DATA_DIR as a quoted C string literal so we can use it in C++ source code.
-target_compile_definitions(LinalgComparison PRIVATE DATA_DIR=\"${CMAKE_SOURCE_DIR}/Data\")
+target_compile_definitions(LinalgComparison PRIVATE "DATA_DIR=\"${CMAKE_SOURCE_DIR}/Data\"")
 
 # additional Eigen optimizations
 target_compile_definitions(LinalgComparison PRIVATE 

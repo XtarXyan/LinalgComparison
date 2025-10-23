@@ -161,7 +161,7 @@ vector<double> run_benchmarks(SolverFunc solver, const string& name, const Matri
 int main() {
     // Load sizes
     cout<<"Loading sizes...";
-    ifstream sizeFile("Data/size.csv");
+    ifstream sizeFile(DATA_DIR "/size.csv");
     if (!sizeFile.is_open()) {
         cerr << "Error opening Data/size.csv" << endl;
         return 1;
@@ -197,10 +197,10 @@ int main() {
 
     // Load data
     cout << "Loading matrices..." << endl;
-    MatrixXd A = loadMatrix("Data/A.csv", rows_A, cols_A);
-    VectorXd b = loadVector("Data/b.csv", size_b);
-    MatrixXd C = loadMatrix("Data/C.csv", rows_C, cols_C);
-    VectorXd d = loadVector("Data/d.csv", size_d);
+    MatrixXd A = loadMatrix(DATA_DIR "/A.csv", rows_A, cols_A);
+    VectorXd b = loadVector(DATA_DIR "/b.csv", size_b);
+    MatrixXd C = loadMatrix(DATA_DIR "/C.csv", rows_C, cols_C);
+    VectorXd d = loadVector(DATA_DIR "/d.csv", size_d);
 
     // Sanity checks to avoid later out-of-bounds/segfaults
     if (A.rows() != rows_A || A.cols() != cols_A) {

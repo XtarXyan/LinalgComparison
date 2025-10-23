@@ -77,7 +77,8 @@
         },
         {
             "name": "windows",
-            "configurePreset": "windows"
+            "configurePreset": "windows",
+            "configuration": "Release"
         }
     ],
     "testPresets": [

@@ -47,7 +47,8 @@ python benchmark.py
 To benchmark C++ run
 ```Powershell
 cmake --preset windows
-.\build-msvc\LinalgComparison.exe
+cmake --build --preset windows
+.\build-msvc\Release\LinalgComparison.exe
 ```
 
 ### Linux:
@@ -67,12 +68,14 @@ python benchmark.py
 To benchmark C++ run
 ```Bash
 cmake --preset default
+cmake --build --preset default
 ./build-gcc/LinalgComparison
 ```
 
 To alternatively benchamrk with Clang run
 ```Bash
 cmake --preset linux-clang
+cmake --build --preset linux-clang
 ./build-clang/LinalgComparison
 ```
 
